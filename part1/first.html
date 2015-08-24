@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Introduction</title>
+	<script src="./js/angular.min.js"></script>
+</head>
+
+<body ng-app>
+
+	<div>
+		Name : <input type="text" ng-model="name" /> {{name}}
+	</div>
+
+	<div ng-init="users=['John Smith', 'John Doe', 'Jane Doe', 'Marry Jane']">
+
+		<h2> Looping with the ng-repeat Directive</h2>
+
+		<ul>
+			<li ng-repeat="user in users">{{user}}</li>
+		</ul>
+
+	</div>
+
+</body>
+</html>

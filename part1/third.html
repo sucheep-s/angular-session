@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular App&Controller</title>
+</head>
+<body ng-app="myApp">
+
+	<div class="containner" ng-controller="simpleController">
+
+		<div>
+			Filter : <input type="text" ng-model="filterTxt" /> {{name}}
+		</div>
+
+		<div>
+
+			<h2> Looping with the ng-repeat Directive</h2>
+
+			<ul>
+				<li ng-repeat="user in users | filter:filterTxt | orderBy: 'city' : true ">{{user.name | uppercase}} - {{user.city}}</li>
+			</ul>
+
+		</div>
+		
+	</div>
+
+	<script src="./js/angular.min.js"></script>
+	<script type="text/javascript">
+
+		var myApp = angular.module('myApp', []);
+
+		myApp.controller('simpleController', function($scope){
+			$scope.users = [
+				{name:'John Smith', city: 'Phoenix'}, 
+				{name: 'John Doe', city: 'New York'}, 
+				{name: 'Jane Doe', city: 'San Francisco'}, 
+				{name:'Marry Jane', city:'New York'}		
+			];
+		});
+
+	</script>
+<!-- https://docs.angularjs.org/api/ng/filter/ -->
+</body>
+</html>

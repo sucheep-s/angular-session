@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular App&Controller</title>
+</head>
+<body ng-app="myApp">
+
+    <div class="containner" ng-controller="simpleController">
+
+        <div class="filter">
+            Filter : <input type="text" ng-model="filterTxt" /> {{filterTxt}}
+        </div>
+
+        <div class="list">
+
+            <h2> Looping with the ng-repeat Directive</h2>
+
+            <div class="remaining">
+                Check {{checking()}}  of  {{ users.length }} users [<a href="" ng-click="remove()">remove</a>]
+            </div>
+
+            <ul>
+                <li ng-repeat="user in users | filter:filterTxt | orderBy: 'city' : true ">
+                    <input type="checkbox" ng-model="user.checked"/>
+                    {{user.name | uppercase}} - {{user.city}}
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="addNew">
+            Name : <input type="text" ng-model="name" />
+            City : <input type="text" ng-model="city" />
+            <button type="button" ng-click="addUser()">Add User</button>
+        </div>
+        
+    </div>
+
+    <script src="./js/angular.min.js"></script>
+
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('simpleController', function($scope){
+
+            $scope.users = [
+                {name:'John Smith', city: 'Phoenix', checked: false}, 
+                {name: 'John Doe', city: 'New York', checked: false}, 
+                {name: 'Jane Doe', city: 'San Francisco', checked: false}, 
+                {name:'Marry Jane', city:'New York', checked: false}        
+            ];
+
+            $scope.addUser = function(){
+
+                $scope.users.push({
+                    name: $scope.name,
+                    city: $scope.city
+                });
+                $scope.name = '';
+                $scope.city = '';
+            };
+
+            $scope.remove = function(){
+
+                var oldUser = $scope.users;
+                $scope.users = [];
+                angular.forEach(oldUser, function(user){
+                    if(!user.checked){
+                        $scope.users.push(user);
+                    }
+                });
+            };
+
+            $scope.checking = function(){
+                var count = 0;
+                $scope.users.forEach(function(user){
+                    count += user.check ? 1 : 0;
+                });
+                return count;
+            };
+
+        });
+
+    </script>
+<!-- https://docs.angularjs.org/api/ng/filter/ -->
+</body>
+</html>
+
+<!--
+ Take from third project
+ 1. add input
+ 2. onclick
+ 3. add users.length 
+ 4. add checkbox
+ 5. add delete
+ 6. add remaining
+-->
