@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Management</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">	
+	<script src="/assets/js/angular.min.js"></script>
+	<script src="/assets/js/angular-route.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+	<nav>
+		<ul>
+			<li><a href="#homepage">Homepage</a></li>
+			<li><a href="#users">Users</a></li>
+		</ul>
+	</nav>
+
+	<div class="view" ng-view=""></div>
+
+	<script type="text/javascript">
+
+		var myApp = angular.module('myApp', ['ngRoute']);
+		myApp.config(['$routeProvider', function($routeProvider){
+
+			$routeProvider
+			.when('/', {
+				controller: 'simpleController',
+				templateUrl: './app/views/homepage.html'
+			})
+			.when('/homepage', {
+				controller: 'simpleController',
+				templateUrl: './app/views/homepage.html'
+			})			
+			.when('/users', {
+				controller: 'simpleController',
+				templateUrl: './app/views/users.html'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+
+		}]);
+
+	</script>
+
+	<script src="/assets/js/app/app.js"></script>		
+	<script src="/assets/js/bootstrap.min.js"></script>	
+</body>
+</html>
