@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View and Routing</title>
+	<script src="/assets/js/angular.min.js"></script>
+	<script src="/assets/js/angular-route.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+	<nav>
+		<ul>
+			<li><a href="#homepage">Homepage</a></li>
+			<li><a href="#users">Users</a></li>
+		</ul>
+	</nav>
+
+	<div class="view" ng-view=""></div>
+
+	<script type="text/javascript">
+
+		var myApp = angular.module('myApp', ['ngRoute']);
+		myApp.config(['$routeProvider', function($routeProvider){
+
+			$routeProvider
+			.when('/', {
+				controller: 'simpleController',
+				templateUrl: './app/views/homepage.html'
+			})
+			.when('/homepage', {
+				controller: 'simpleController',
+				templateUrl: './app/views/homepage.html'
+			})			
+			.when('/users', {
+				controller: 'simpleController',
+				templateUrl: './app/views/users.html'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+
+		}]);
+
+	</script>
+	
+</body>
+</html>
